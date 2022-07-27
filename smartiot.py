@@ -1,12 +1,13 @@
 # Smart IoT Library
 import requests
 import torchaudio 
+import matplotlib.pyplot as plt
 
 def version():
   '''
     Shows smart IoT library version
   '''
-  print('Smart IoT Library ver. 1.2.0')
+  print('Smart IoT Library ver. 1.3.0')
   
 def load_audio(url, fname):
   '''
@@ -40,3 +41,10 @@ def print_info(info, fname=None):
   print(f'              Mean: {wave.mean().item():6.3f}')
   print(f'           Std Dev: {wave.max().std():6.3f}')
   print(wave)
+  
+def plot_wave(wave, torch=True):
+  '''
+    Graficar una señal de audio en PyTorch o Numpy 
+  '''
+  plt.figure()
+  plt.plot(wave[0].numpy() if torch else wave)
