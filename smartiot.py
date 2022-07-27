@@ -2,12 +2,13 @@
 import requests
 import torchaudio 
 import matplotlib.pyplot as plt
+from IPython.display import Audio, display
 
 def version():
   '''
     Shows smart IoT library version
   '''
-  print('Smart IoT Library ver. 1.3.0')
+  print('Smart IoT Library ver. 1.4.0')
   
 def load_audio(url, fname):
   '''
@@ -48,3 +49,21 @@ def plot_wave(wave, torch=True):
   '''
   plt.figure()
   plt.plot(wave[0].numpy() if torch else wave)
+
+def play_audio(waveform, sample_rate, torch=True):
+  '''
+    Reproducir una señal de audio.
+  '''
+  if torch:
+    waveform = waveform.numpy()
+    num_channels, num_frames = waveform.shape
+  else:
+    display(Audio(waveform, rate=sample_rate))
+    return
+  
+  if num_channels == 1:
+    display(Audio(waveform[0], rate=sample_rate))
+  elif num_channels == 2:
+    display(Audio((waveform[0], waveform[1]), rate=sample_rate))
+  else:
+    raise ValueError('Forma de la señal no soporta más de dos canales')
