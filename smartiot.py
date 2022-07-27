@@ -13,7 +13,7 @@ def load_audio(url, fname):
   Regresa la señal de audio, sample-rate, metadata, byte-size
   '''
   r = requests.get(url)
-  with open(fn, 'wb') as f:
+  with open(fname, 'wb') as f:
     f.write(r.content)
 
   sz = len(r.content)
