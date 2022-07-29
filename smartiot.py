@@ -67,7 +67,7 @@ def play_audio(waveform, sample_rate, torch=True):
     display(Audio((waveform[0], waveform[1]), rate=sample_rate))
   else:
     raise ValueError('Forma de la señal no soporta más de dos canales')
-
+    
 def plot_fft(wave, max_freq=None):
   '''
     Graficar la señal transformada FFT desde 0 hasta la frecuencia máxima
