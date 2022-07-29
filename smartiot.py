@@ -8,7 +8,7 @@ def version():
   '''
     Shows smart IoT library version
   '''
-  print('Smart IoT Library ver. 1.4.0')
+  print('Smart IoT Library ver. 1.5.0')
   
 def load_audio(url, fname):
   '''
@@ -67,3 +67,12 @@ def play_audio(waveform, sample_rate, torch=True):
     display(Audio((waveform[0], waveform[1]), rate=sample_rate))
   else:
     raise ValueError('Forma de la señal no soporta más de dos canales')
+
+ def plot_fft(wave, max_freq=None):
+  '''
+    Graficar la señal transformada FFT desde 0 hasta la frecuencia máxima
+  '''
+  wave2 = wave[:max_freq] if max_freq else wave
+  wave3 = np.abs(wave2.real)
+  plt.figure()
+  plt.plot(wave3, lw=1, color='green')
